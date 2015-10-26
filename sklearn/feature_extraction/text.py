@@ -28,13 +28,14 @@ from ..externals import six
 from ..externals.six.moves import xrange
 from ..preprocessing import normalize
 from .hashing import FeatureHasher
-from .stop_words import ENGLISH_STOP_WORDS
+from .stop_words import ENGLISH_STOP_WORDS, PERSIAN_STOP_WORDS
 from ..utils import deprecated
 from ..utils.fixes import frombuffer_empty, bincount
 from ..utils.validation import check_is_fitted
 
 __all__ = ['CountVectorizer',
            'ENGLISH_STOP_WORDS',
+           'PERSIAN_STOP_WORDS',
            'TfidfTransformer',
            'TfidfVectorizer',
            'strip_accents_ascii',
@@ -86,6 +87,8 @@ def strip_tags(s):
 def _check_stop_list(stop):
     if stop == "english":
         return ENGLISH_STOP_WORDS
+    elif stop == "persian":
+        return PERSIAN_STOP_WORDS
     elif isinstance(stop, six.string_types):
         raise ValueError("not a built-in stop list: %s" % stop)
     elif stop is None:
